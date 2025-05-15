@@ -1,0 +1,49 @@
+version: '3.9'
+
+services:
+  voip-container-1:
+    image: judavalente/linphone:latest
+    devices:
+      - /dev/snd:/dev/snd
+    environment:
+      - DISPLAY=${DISPLAY}
+      - PULSE_SERVER=unix:/run/user/1000/pulse:/run/user/1000/pulse/native
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /run/user/1000/pulse:/run/user/1000/pulse
+    networks:
+      - linphone
+    ports:
+      - "5060:5060/udp"
+      - "16384-16400:16384-16400/udp"
+
+  voip-container-2:
+    image: judavalente/linphone:latest
+    devices:
+      - /dev/snd:/dev/snd
+    environment:
+      - DISPLAY=${DISPLAY}
+      - PULSE_SERVER=unix:/run/user/1000/pulse:/run/user/1000/pulse/native
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /run/user/1000/pulse:/run/user/1000/pulse
+    networks:
+      - linphone
+    ports:
+      - "5061:5060/udp"
+      - "16401-16417:16384-16400/udp"
+
+  cap:
+    image: judavalente/sngrep
+    command: ["sngrep"]
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    stdin_open: true
+    tty: true
+
+
+networks:
+  linphone:
+
