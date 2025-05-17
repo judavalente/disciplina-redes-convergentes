@@ -1,4 +1,4 @@
-# Atividade de criação de um container com linphone
+# Atividade de criação e execução de um container com linphone
 
 Comandos para rodar o container:
 
