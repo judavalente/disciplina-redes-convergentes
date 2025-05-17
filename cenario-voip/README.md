@@ -1,5 +1,3 @@
-# Atividade de captura de chamadas linphone com o sngrep
+# Atividade de cenario voip com docker compose e linphone
 
-Antes de iniciar o container usar o comando xhost +
-Para rodar o container com o sngrep, utilizar o comando docker exec -it  [ID_OU_NOME_DO_CONTAINER] sngrep
- sngrep
+Antes de rodar o docker-compose.yaml usar o comando xhost +
